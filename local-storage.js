@@ -11,8 +11,14 @@ function accessor (key, value) {
   return set(key, value);
 }
 
-function get (key) {
-  return JSON.parse(ls.getItem(key));
+function get (key, def) {
+  try{
+	  return JSON.parse(ls.getItem(key));
+  } catch (e) {
+	if (def) {
+		return def;
+	}return null;
+  }
 }
 
 function set (key, value) {
